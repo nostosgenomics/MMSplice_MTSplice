@@ -89,11 +89,11 @@ class MMSplice(object):
 
         '''
         score = np.concatenate([
-            self.acceptor_intronM.predict(batch['acceptor_intron']),
-            logit(self.acceptorM.predict(batch['acceptor'])),
-            self.exonM.predict(batch['exon']),
-            logit(self.donorM.predict(batch['donor'])),
-            self.donor_intronM.predict(batch['donor_intron'])
+            self.acceptor_intronM(batch['acceptor_intron'], training=False),
+            logit(self.acceptorM(batch['acceptor'], training=False)),
+            self.exonM(batch['exon'], training=False),
+            logit(self.donorM(batch['donor'], training=False)),
+            self.donor_intronM(batch['donor_intron'], training=False)
         ], axis=1)
         return score
 
